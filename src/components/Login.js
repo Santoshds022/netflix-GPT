@@ -3,13 +3,17 @@ import Header from './Header'
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm]= useState(true);
   const [errorMessage, setErrormessage] = useState(null);
+  const navigate  = useNavigate() 
   
   const email = useRef(null)
   const password = useRef(null)
+  const name = useRef(null)
+
 
   
   const handleButtonClick = ()=>{
@@ -26,7 +30,17 @@ const Login = () => {
         .then((userCredential) => {
         // Signed up 
         const user = userCredential.user;
-        console.log(user);
+        updateProfile(user, {
+          displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+        }).then(() => {
+          // Profile updated!
+          // ...
+        }).catch((error) => {
+          // An error occurred
+          // ...
+        });
+        // console.log(user);
+        navigate("/browse")
         // ...
       })
       .catch((error) => {
@@ -45,6 +59,7 @@ const Login = () => {
     // Signed in 
        const user = userCredential.user;
        console.log(user);
+       navigate("/browse")
     // ...
      })
     .catch((error) => {
@@ -73,6 +88,7 @@ const Login = () => {
      
        {
         !isSignInForm && <input 
+        ref = {name}
          type="text" 
          placeholder='Enter Full Name' 
          className='p-2 my-4 w-full bg-gray-700'
