@@ -3,14 +3,14 @@ import Header from './Header'
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUSer } from '../utils/userSlice';
+import { PHOTOURL } from '../utils/constants';
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm]= useState(true);
   const [errorMessage, setErrormessage] = useState(null);
-  const navigate  = useNavigate() 
+  
   const dispatch = useDispatch()
   
   const email = useRef(null)
@@ -34,18 +34,17 @@ const Login = () => {
         // Signed up 
         const user = userCredential.user;
         updateProfile(user, {
-          displayName: name.current.value, photoURL: "https://cdn.icon-icons.com/icons2/2570/PNG/512/image_icon_153794.png"
+          displayName: name.current.value, 
+          photoURL:  PHOTOURL
         }).then(() => {
               const {uid , email, displayName, photoURL} = auth.currentUser;  
-              dispatch(addUSer({uid: uid,
+              dispatch(addUSer({
+                  uid: uid,
                  email: email, 
                  displayName: displayName ,
                   photoURL : photoURL
                 }));
-           
-              navigate("/browse")
-          
-        }).catch((error) => {
+         }).catch((error) => {
           // An error occurred
             setErrormessage(error.Code + "-"+ error.Message)
 
@@ -67,11 +66,9 @@ const Login = () => {
         email.current.value, 
         password.current.value)
       .then((userCredential) => {
+        // console.log(userCredential);
     // Signed in 
        const user = userCredential.user;
-       console.log(user);
-       navigate("/browse")
-    // ...
      })
     .catch((error) => {
     const errorCode = error.code;
@@ -80,8 +77,6 @@ const Login = () => {
     });
     }
 
- 
-    
   }
 
   const toggleSigninForm = ()=>{
