@@ -49,7 +49,7 @@ const Header = () => {
     return ()=> unSUbscribe();
   },[])
   return (
-    <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'>
+    <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between'>
     <div>
     <img 
      className='w-40'
