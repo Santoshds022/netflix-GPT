@@ -13,3 +13,9 @@ export const  API_OPTIONS = {
 }
 export const Img_CDN = "https://image.tmdb.org/t/p/w500"
 export const BG_url = "https://assets.nflxext.com/ffe/siteui/vlv3/31ef2c5c-3d08-47d5-b7a9-f29e4f4f893d/1ac1cee7-5580-4cfa-b701-99d1a8f2d148/IN-en-20240506-POP_SIGNUP_TWO_WEEKS-perspective_WEB_ebbef551-d229-4865-8cdc-fb00f8960227_large.jpg"
+
+export const SUPPORTED_LANGUAGES = [
+  {identifier :"en",name:"en"},
+  {identifier :"hindi",name:"hindi"},
+  {identifier :"spanish",name:"spanish"}
+]

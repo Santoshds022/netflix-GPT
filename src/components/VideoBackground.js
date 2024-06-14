@@ -7,7 +7,7 @@ const VideoBackground = ({movieId}) => {
 
     // const [trailerId, setTrailerId] = useState(null);//solution1
     const trailerVideo = useSelector(store =>store.movies?.trailerVideo );
-    // console.log(trailerVideo);
+  
     
     return (
     <div className="w-screen">

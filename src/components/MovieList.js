@@ -5,7 +5,7 @@ import "../Custom.css"
 
 const MovieList = ({title,movies}) => {
     
-    // console.log(movies[0]);
+  
     if (!movies || movies.length === 0) {
         return <div>No movies available.</div>; // Handle empty or undefined movies array
       }

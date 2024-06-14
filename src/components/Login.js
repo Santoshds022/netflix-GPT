@@ -50,8 +50,7 @@ const Login = () => {
 
           // ...
         });
-        // console.log(user);
-        // ...
+  
       })
       .catch((error) => {
       const errorCode = error.code;
@@ -66,7 +65,7 @@ const Login = () => {
         email.current.value, 
         password.current.value)
       .then((userCredential) => {
-        // console.log(userCredential);
+
     // Signed in 
        const user = userCredential.user;
      })
